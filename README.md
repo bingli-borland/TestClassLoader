@@ -85,5 +85,6 @@ initialloader是MyClassLoader，defineloader就是ModuleLoader，gc时会将Modu
 从原理上分析由于ClassLoader都没有卸载，因此entry肯定也不会清除，所以加载的结果不同。
 从理论上fullGC不应该影响接口的输出结果，因为GC是不定期的。
 
-
- 
+#### 案例运行
+ 在jdk8u-192和jdk8u-201(高于192版本即可)运行mvn clean test
+ testLoadAfterGC在jdk8u-201会失败，和现象1一样
