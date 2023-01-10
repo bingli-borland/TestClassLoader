@@ -65,7 +65,7 @@ SystemDictionary类的定义在classfile/systemDictionary.hpp中，是一个系�
 - _dictionary：Dictionary类指针，实际保存已加载类的HashMap,DictionaryEntry为其中一个条目，其创建需要loader_data和klass
 
 
-1. 对上面现象1,分析了OpenJDK的native代码，发现directory.cpp的实现，在https://gitee.com/bingli-borland/jdk8u/commit/4b9ec1c4fa735e97caea5bd73555ce131be60ca5
+1. 对上面现象1,分析了OpenJDK的native代码，发现directory.cpp的实现，在https://github.com/adoptium/jdk8u//commit/4b9ec1c4fa735e97caea5bd73555ce131be60ca5
    提交去掉了一部分内容，基本确认是他影响的。OpenJDK为什么进行这一操作，并没有明确说明。
 
 Class.forName("B", false, MyClassLoader)加载过程中，SystemDictionary.resolve_instance_class_or_null方法会先
@@ -86,5 +86,4 @@ initialloader是MyClassLoader，defineloader就是ModuleLoader，gc时会将Modu
 从理论上fullGC不应该影响接口的输出结果，因为GC是不定期的。
 
 #### 案例运行
- 在jdk8u-192和jdk8u-201(高于192版本即可)运行mvn clean test
- testLoadAfterGC在jdk8u-201会失败，和现象1一样
+ 在jdk8u-192和jdk8u-201(高于192版本即可)运行**mvn clean test**,  testLoadAfterGC在jdk8u-201会失败，和现象1一样
